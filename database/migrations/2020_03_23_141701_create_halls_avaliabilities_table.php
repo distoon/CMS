@@ -17,7 +17,7 @@ class CreateHallsAvaliabilitiesTable extends Migration
             $table->bigIncrements('id');
             $table->integer('course_id');
             $table->time('time');
-            $table->binary('available');
+            $table->integer('available');
             $table->timestamps();
         });
     }
