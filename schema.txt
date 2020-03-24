@@ -10,7 +10,7 @@ courses:[id, name, code, min_sudents_number, department_id, semester, credit_hou
 
 halls:[id, name]
 
-halls_avaliabilities:[id, hall_id, time, availible]
+halls_availabilities:[id, hall_id, time, availible]
 
 course_halls:[id, course_id, halls_avaliability_id]
 
