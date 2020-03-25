@@ -14,8 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('login',function(){
-    return 'mfesh floos';
-});
-Route::get('user','TestingController@create');
-Route::post('user/post','TestingController@store');
+
+Auth::routes();
+
+Route::get('/home', function() {
+    return view('home');
+})->name('home')->middleware('auth');
