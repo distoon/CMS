@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'AdminLTE 3',
+    'title' => 'CMS',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
+    'logo' => '<b>CMS</b>',
     'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
@@ -65,9 +65,9 @@ return [
     */
 
     'usermenu_enabled' => true,
-    'usermenu_header' => false,
-    'usermenu_header_class' => 'bg-primary',
-    'usermenu_image' => false,
+    'usermenu_header' => true,
+    'usermenu_header_class' => 'bg-secondary',
+    'usermenu_image' => true,
     'usermenu_desc' => false,
 
     /*
@@ -173,7 +173,7 @@ return [
 
     'login_url' => 'login',
 
-    'register_url' => 'register',
+    'register_url' => null,
 
     'password_reset_url' => 'password/reset',
 

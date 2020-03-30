@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use Illuminate\Contracts\Events\Dispatcher;
+use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -21,8 +23,86 @@ class AppServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(Dispatcher $event)
     {
-        //
+        $event->listen(BuildingMenu::class, function (BuildingMenu $event) {
+        $event->menu->add(
+
+        );
+        if(\Auth::check()){
+          if(\Auth::user()->role == 0){
+            $event->menu->add(['header' => 'Admin']);
+            $event->menu->add([
+                    'text'    => 'Courses',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'submenu' => [
+                        [
+                            'text' => 'level_one',
+                            'url'  => '#',
+                        ],
+                        
+                        [
+                            'text' => 'level_one',
+                            'url'  => '#',
+                        ],
+                    ],
+                ],
+                [
+                    'text'    => 'Halls',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'submenu' => [
+                        [
+                            'text' => 'level_one',
+                            'url'  => '#',
+                        ],
+                        
+                        [
+                            'text' => 'level_one',
+                            'url'  => '#',
+                        ],
+                    
+                    ],
+                ],
+                [
+                    'text'    => 'Instructors',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'submenu' => [
+                        [
+                            'text' => 'level_one',
+                            'url'  => '#',
+                        ],
+                        
+                        [
+                            'text' => 'level_one',
+                            'url'  => '#',
+                        ],
+                    
+                    ],
+                ],
+                [
+                    'text'    => 'Students',
+                    'icon'    => 'fas fa-fw fa-share',
+                    'submenu' => [
+                        [
+                            'text' => 'level_one',
+                            'url'  => '#',
+                        ],
+                        
+                        [
+                            'text' => 'level_one',
+                            'url'  => '#',
+                        ],
+                    
+                    ],
+                ]
+             );
+          }
+          else {
+            $event->menu->add([
+
+            ]);
+          }
+        }
+      });
     }
 }

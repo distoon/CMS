@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'username', 'email', 'password','first_name','last_name','gender',
+        'username', 'email', 'password','first_name','last_name','gender','role',
     ];
 
     /**
@@ -43,5 +43,17 @@ class User extends Authenticatable
     public function instructors()
     {
         return $this->hasMany('App/Instructor');
+    }
+    public function isAdmin()
+    {
+        return ($this->role == 0)? true : false;
+    }
+    public function getNameAttribute()
+    {
+        return $this->first_name;
+    }
+    public function adminlte_image()
+    {
+        return asset('images/default.jpg');
     }
 }
