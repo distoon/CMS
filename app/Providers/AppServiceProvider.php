@@ -84,8 +84,8 @@ class AppServiceProvider extends ServiceProvider
                     'icon'    => 'fas fa-fw fa-share',
                     'submenu' => [
                         [
-                            'text' => 'level_one',
-                            'url'  => '#',
+                            'text' => 'Add New Student',
+                            'url'  => route('add.student'),
                         ],
                         
                         [
