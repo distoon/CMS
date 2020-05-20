@@ -25,9 +25,11 @@ Route::group(['middleware' => ['auth'],],function(){
     return view('home');
     })->name('home');
     
-    Route::group(['prefix' => 'admin'],function(){
+    Route::group(['prefix' => 'admin'],function()
+    {
         // students
         Route::get('/addStudent','AdminController@getAddStudent')->name('add.student');
         Route::post('/addStudent','AdminController@postAddStudent')->name('add.student');
+        Route::get('/updateStudent/{name}', 'AdminController@getUpdateStudent')=>name('update.student')
     });
 });
