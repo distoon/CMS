@@ -8,7 +8,7 @@ use App\Student;
 
 class AdminController extends Controller
 {
-    public function getAddStudent()
+    public function getAddStudent(Request $request)
     {
         return view('admin.student.create');
     }
@@ -16,17 +16,12 @@ class AdminController extends Controller
     {
         
     }
-    public function getUpdateStudent($name)
-    {
-        // $user = Student::where('user_name', $name)->get();
-
-        // $user = User::where('user_name',$username)->first();
-        // $user = $user->student;
-
-        $student = Student::whereHas('user', function($query){
-            $query->where('user_name',$username);
+    public function getUpdateStudent($name){
+        
+        $student = Student::whereHas('user', function($query) use($name){
+            $query->where('user_name',$name);
         })->first();
 
-        return $student;
+        return $student->gpa;
     }
 }
