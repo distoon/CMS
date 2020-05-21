@@ -31,7 +31,7 @@ Route::group(['middleware' => ['auth'],],function(){
         Route::get('/addStudent','AdminController@getAddStudent')->name('add.student');
         Route::post('/addStudent','AdminController@postAddStudent')->name('add.student');
         Route::get('/updateStudent/{name}', 'AdminController@getUpdateStudent')->name('update.student');
-
-
+        Route::post('/updateStudent/{name}', 'AdminController@postUpdateStudent')->name('update.student');
+        Route::get('/listStudents','AdminController@getListStudents')->name('list.student');
     });
 });
