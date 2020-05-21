@@ -1,7 +1,7 @@
-ali mostafa : 
-omar mohamed el m3toh : 
-reda : 
-ali ashraf : 
+ali mostafa : getAddStudent function, postAddStudent function, create.blade.php
+omar mohamed el m3toh :  listStudent function and view
+reda : getUpdateStudent, postUpdateStudent, update.blade.php
+ali ashraf : adminlte views and validation with AppServiceProvider
 
 done list:
 setting adminlte package,
