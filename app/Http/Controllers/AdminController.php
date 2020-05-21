@@ -22,6 +22,17 @@ class AdminController extends Controller
             $query->where('user_name',$name);
         })->first();
 
-        return $student->gpa;
+        return view('admin.student.update',compact('student'));
+    }
+    public function postUpdateStudent(Request $request, Student $student)
+    {
+        $this->validate($request,[
+            'email' => 'max:250|required|email',
+        ]);
+        $student->update([
+            'val' => val,
+            'val' => val,
+        ]);
+        $student->update($requestarray);
     }
 }

@@ -1,6 +1,7 @@
 @extends('adminlte::page')
 @section('content')
-    <form action="{{ route('add.student') }}" method="POST">
+    <form action="{{ route('add.student',['student' => $student]) }}" method="POST">
+        <input type="hidden" name='student' value="{{ $student }}">
         <div class="box box-primary">
             <div class="box-header with-border">
               <h3 class="box-title">Quick Example</h3>
@@ -11,7 +12,7 @@
               <div class="box-body">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" name='email'>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Password</label>
