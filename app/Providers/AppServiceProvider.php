@@ -87,13 +87,8 @@ class AppServiceProvider extends ServiceProvider
                             'text' => 'Add New Student',
                             'url'  => route('add.student'),
                         ],
-                        
                         [
-                            'text' => 'level_one',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text' => 'Update Student',
+                            'text' => 'All Students',
                             'url' => route('list.student'),
                         ],
                     
@@ -102,9 +97,7 @@ class AppServiceProvider extends ServiceProvider
              );
           }
           else {
-            $event->menu->add([
-
-            ]);
+            $event->menu->add(['header' => 'Courses']);
           }
         }
       });

@@ -52,10 +52,10 @@ class AdminController extends Controller
     }
     public function postUpdateStudent(Request $request, $name)
     {
+        // return $request;
         $student = Student::whereHas('user', function($query) use($name){
             $query->where('user_name',$name);
         })->first();
-        // return $request;
         $this->validate($request, [
             'email' => 'email|max:255',
             'firstName' => 'max:255|alpha',
@@ -81,10 +81,10 @@ class AdminController extends Controller
         
         return redirect()->back();
     }
-    public function getListStudents()
+    public function getListStudents(Request $request)
     {
-        $students = Student::all();
-        $departments = Department::all();
-        return view('admin.student.list',compact('students', 'departments'));
+        $level = $request->level;
+        $students = Student::where('level',$level)->get();
+        return view('admin.student.list',compact('students','level'));
     }
 }

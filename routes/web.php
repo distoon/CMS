@@ -28,10 +28,10 @@ Route::group(['middleware' => ['auth'],],function(){
     Route::group(['prefix' => 'admin'],function()
     {
         // students
-        Route::get('/addStudent','AdminController@getAddStudent')->name('add.student');
-        Route::post('/addStudent','AdminController@postAddStudent')->name('add.student');
-        Route::get('/updateStudent/{name}', 'AdminController@getUpdateStudent')->name('update.student');
-        Route::post('/updateStudent/{name}', 'AdminController@postUpdateStudent')->name('update.student');
-        Route::get('/listStudents','AdminController@getListStudents')->name('list.student');
+        Route::get('/add-student','AdminController@getAddStudent')->name('add.student');
+        Route::post('/add-student','AdminController@postAddStudent')->name('add.student');
+        Route::get('/edit-student/{name}', 'AdminController@getUpdateStudent')->name('edit.student');
+        Route::post('/update-student/{name}', 'AdminController@postUpdateStudent')->name('update.student');
+        Route::get('/list-students','AdminController@getListStudents')->name('list.student');
     });
 });
