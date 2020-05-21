@@ -92,6 +92,10 @@ class AppServiceProvider extends ServiceProvider
                             'text' => 'level_one',
                             'url'  => '#',
                         ],
+                        [
+                            'text' => 'Update Student',
+                            'url' => route('list.student'),
+                        ],
                     
                     ],
                 ]
