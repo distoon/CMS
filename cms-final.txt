@@ -1,4 +1,12 @@
-ali mostafa : course.php,create_course_table.php,coursehall.php,create_course_halls_table.php,create_course_table.php
-omar mohamed el m3toh : hall.php,hallavailabilities.php,create_hall_table.php,create_hall_availabilities.php
-reda : instructor.php,instructorcourse.php,create_instructor_table.php,create_instructor_courses.php
-ali ashraf : student.php,studentcourse.php,create_student_table.php,create_student_course.php
+ali mostafa : 
+omar mohamed el m3toh : 
+reda : 
+ali ashraf : 
+
+done list:
+setting adminlte package,
+setting up roles in AppServiceProvider.php
+middlewares added to web.php
+create,update,list all students views and controller
+
+files have been changed : adminControllers,web,AppServiceProvider,resources/vendor/adminlte(added),resources/views/admin(added)

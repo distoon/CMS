@@ -22,7 +22,7 @@ Auth::routes([
 Route::group(['middleware' => ['auth'],],function(){
         
     Route::get('/home', function() {
-    return view('home');
+        return view('home');
     })->name('home');
     
     Route::group(['prefix' => 'admin'],function()
