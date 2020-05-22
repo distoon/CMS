@@ -33,5 +33,6 @@ Route::group(['middleware' => ['auth'],],function(){
         Route::get('/edit-student/{name}', 'AdminController@getUpdateStudent')->name('edit.student');
         Route::post('/update-student/{name}', 'AdminController@postUpdateStudent')->name('update.student');
         Route::get('/list-students','AdminController@getListStudents')->name('list.student');
+        Route::get('/view-student/{name}', 'AdminController@getViewStudent')->name('view.student');
     });
 });
