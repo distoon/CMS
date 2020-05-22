@@ -106,6 +106,26 @@ class AdminController extends Controller
     {
         return view('admin.course.create');
     }
+    public function postAddCourse(Request $request)
+    {
+        $this->validate($request, [
+           'courseName' => 'alpha|max:255|required',
+           'courseCode' => 'required|max:255',
+           'minStudentsNumber' => 'required|numeric',
+           'department_id' => 'required',
+           'semester' => 'required',
+           'creditHours' => 'numeric|required',
+        ]);
 
+        $course = Course::create([
+            'name' => $request->courseName,
+            'code' => $request->courseCode,
+            'min_students_number' => $request->minStudentsNumber,
+            'department_id' => $request->department_id,
+            'semester' => $request->semester,
+            'credit_hours' => $request->creditHourse,
+        ]);
+        return redirect()->back();
+    }
 
 }
