@@ -37,9 +37,9 @@
 
                 <div class="form-group">
                   <label for="1st">1st Semester</label>
-                  <input type="radio" name="Semester" value="1" id="1st">
+                  <input type="radio" name="semester" value="1" id="1st">
                   <label for="2nd">2nd Semester</label>
-                  <input type="radio" name="Semester" value="0" id="2nd">
+                  <input type="radio" name="semester" value="0" id="2nd">
                 </div>
                 <div class="form-group">
                   <label>Credit Hours</label>

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Student;
 use App\Department;
-
+use App\Course;
 class AdminController extends Controller
 {
     public function getAddStudent(Request $request)
@@ -109,7 +109,7 @@ class AdminController extends Controller
     public function postAddCourse(Request $request)
     {
         $this->validate($request, [
-           'courseName' => 'alpha|max:255|required',
+           'courseName' => 'max:255|required',
            'courseCode' => 'required|max:255',
            'minStudentsNumber' => 'required|numeric',
            'department_id' => 'required',
@@ -123,7 +123,7 @@ class AdminController extends Controller
             'min_students_number' => $request->minStudentsNumber,
             'department_id' => $request->department_id,
             'semester' => $request->semester,
-            'credit_hours' => $request->creditHourse,
+            'credit_hours' => $request->creditHours,
         ]);
         return redirect()->back();
     }
