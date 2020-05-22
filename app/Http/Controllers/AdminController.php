@@ -127,5 +127,22 @@ class AdminController extends Controller
         ]);
         return redirect()->back();
     }
-
+    public function getListCourses(Request $request)
+    {
+        $courses = (new Course)->newQuery();
+        // $courses = Course::all();
+        // $courses = $courses->newQuery();
+        // $course->all();
+        if($request->has('department'))
+        {
+            $courses->where('department_id', $request->department);
+        }
+        if($request->has('semester'))
+        {
+            $courses->where('semester', $request->semester);
+        }
+        $courses->get();
+        return $courses;
+        return view('admin.course.list', compact('courses'));
+    }
 }
