@@ -13,6 +13,7 @@ class AdminController extends Controller
     {
         return view('admin.student.create');
     }
+
     public function postAddStudent(Request $request)
     {
         $this->validate($request, [
@@ -44,6 +45,7 @@ class AdminController extends Controller
         // $username = strtolower($request->firstName).strtolower($request->lastName).$uniqueId;
         return redirect()->back();
     }
+
     public function getUpdateStudent($name){
         
         $student = Student::whereHas('user', function($query) use($name){
@@ -52,6 +54,7 @@ class AdminController extends Controller
 
         return view('admin.student.update',compact('student'));
     }
+
     public function postUpdateStudent(Request $request, $name)
     {
         // return $request;
@@ -83,10 +86,26 @@ class AdminController extends Controller
         
         return redirect()->back();
     }
+
     public function getListStudents(Request $request)
     {
         $level = $request->level;
         $students = Student::where('level',$level)->get();
         return view('admin.student.list',compact('students','level'));
     }
+
+    public function getViewStudent($name)
+    {
+        $student = Student::whereHas('user', function($query) use($name){
+            $query->where('user_name',$name);
+        })->first();
+        return view('admin.student.view', compact($student));
+    }
+
+    public function getAddCourse(Request $request)
+    {
+        return view('admin.course.create');
+    }
+
+
 }

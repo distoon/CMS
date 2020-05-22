@@ -13,34 +13,24 @@
         </div>  
     </form>
     <table class='table'>
-        <thead>
+        <thead class="text-center">
             <th>Student ID</th>
             <th>First Name</th>
             <th>Last Name</th>
             <th>Username</th>
-            <th>Email</th>
-            <th>Department</th>
-            <th>Level</th>
-            <th>GPA</th>
-            <th>Actions</th>
+            <th >Actions</th>
         </thead>
-        <tbody>
+        <tbody class="text-center">
             @foreach($students as $student)
-                <tr>  
-                  
+                <tr>
                     <td>{{ $student->user->unique_id}}</td>
                     <td>{{ $student->user->first_name }}</td>
                     <td>{{ $student->user->last_name  }}</td>
                     <td>{{ $student->user->user_name }}</td>
-                    <td>{{ $student->user->email }}</td>
-                    <td>{{ $student->department_id }}</td>
-                    <td>{{ $student->level }}</td>
-                    <td>{{ $student->gpa }}</td>
                     <td>
-
-                        <a href="#" class='btn btn-primary btn-sm'>View</a>
-                        <a href="{{ route('edit.student',['name'=>$student->user->user_name]) }}" class='btn btn-warning btn-sm fa'>Edit</a>
-                        <a href="#" class='btn btn-danger btn-sm'>Delete</a>
+                        <a href="{{ route('view.student', ['name'=>$student->user->user_name]) }}" class='btn btn-primary btn-sm'><i class="fas fa-eye"></i><span> View</span></a>
+                        <a href="{{ route('edit.student',['name'=>$student->user->user_name]) }}" class='btn btn-warning btn-sm fa'><i class="fas fa-pen"></i> Edit</a>
+                        <a href="#" class='btn btn-danger btn-sm'><i class="fas fa-trash-alt"></i> Delete</a>
                     </td>
                 </tr>
              @endforeach
