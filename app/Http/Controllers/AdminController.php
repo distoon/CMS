@@ -41,8 +41,8 @@ class AdminController extends Controller
             'gpa' => $request->gpa,
             'department_id' => $request->department_id,
         ]);
-        $uniqueId = $student->created_at->format('Y');
-        $username = strtolower($request->firstName).strtolower($request->lastName).$uniqueId;
+        // $uniqueId = $student->created_at->format('Y');
+        // $username = strtolower($request->firstName).strtolower($request->lastName).$uniqueId;
         return redirect()->back();
     }
 
