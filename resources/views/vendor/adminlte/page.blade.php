@@ -246,6 +246,11 @@
 
 @section('adminlte_js')
     <script src="{{ asset('vendor/adminlte/dist/js/adminlte.min.js') }}"></script>
+    <script>
+        $(document).ready(function(){
+            $(".dataTable").DataTable();
+        });
+    </script>
     @stack('js')
     @yield('js')
 @stop
