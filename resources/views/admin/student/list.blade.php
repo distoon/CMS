@@ -15,8 +15,7 @@
     <table class='table dataTable'>
         <thead class="text-center">
             <th>Student ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
+            <th>Student Name</th>
             <th>Username</th>
             <th >Actions</th>
         </thead>
@@ -24,8 +23,7 @@
             @foreach($students as $student)
                 <tr>
                     <td>{{ $student->user->unique_id}}</td>
-                    <td>{{ $student->user->first_name }}</td>
-                    <td>{{ $student->user->last_name  }}</td>
+                    <td>{{ $student->user->full_name }}</td>
                     <td>{{ $student->user->user_name }}</td>
                     <td>
                         <a href="{{ route('view.student', ['name'=>$student->user->user_name]) }}" class='btn btn-primary btn-sm'><i class="fas fa-eye"></i><span> View</span></a>
