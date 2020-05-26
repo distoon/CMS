@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Student;
 use App\Department;
-
+use App\Course;
 class AdminController extends Controller
 {
     public function getAddStudent(Request $request)
@@ -107,6 +107,43 @@ class AdminController extends Controller
     {
         return view('admin.course.create');
     }
+    public function postAddCourse(Request $request)
+    {
+        $this->validate($request, [
+           'courseName' => 'max:255|required',
+           'courseCode' => 'required|max:255',
+           'minStudentsNumber' => 'required|numeric',
+           'department_id' => 'required',
+           'semester' => 'required',
+           'creditHours' => 'numeric|required',
+        ]);
 
-
+        $course = Course::create([
+            'name' => $request->courseName,
+            'code' => $request->courseCode,
+            'min_students_number' => $request->minStudentsNumber,
+            'department_id' => $request->department_id,
+            'semester' => $request->semester,
+            'credit_hours' => $request->creditHours,
+        ]);
+        return redirect()->back();
+    }
+    public function getListCourses(Request $request)
+    {
+        $courses = (new Course)->newQuery();
+        // $courses = Course::all();
+        // $courses = $courses->newQuery();
+        // $course->all();
+        if($request->has('department'))
+        {
+            $courses->where('department_id', $request->department);
+        }
+        if($request->has('semester'))
+        {
+            $courses->where('semester', $request->semester);
+        }
+        $courses->get();
+        return $courses;
+        return view('admin.course.list', compact('courses'));
+    }
 }

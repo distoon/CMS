@@ -21,5 +21,4 @@ class Department extends Model
     {
         return $this->hasMany('App/Instructor');
     }
-    
 }

@@ -37,13 +37,13 @@ class AppServiceProvider extends ServiceProvider
                     'icon'    => 'fas fa-fw fa-share',
                     'submenu' => [
                         [
-                            'text' => 'level_one',
-                            'url'  => '#',
+                            'text' => 'Add New Course',
+                            'url'  =>  route('add.course'),
                         ],
                         
                         [
-                            'text' => 'level_one',
-                            'url'  => '#',
+                            'text' => 'All Courses',
+                            'url'  => route('list.course'),
                         ],
                     ],
                 ],
