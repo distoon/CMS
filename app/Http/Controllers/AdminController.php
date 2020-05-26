@@ -40,6 +40,7 @@ class AdminController extends Controller
             'level' => $request->level,
             'gpa' => $request->gpa,
             'department_id' => $request->department_id,
+            ''
         ]);
         // $uniqueId = $student->created_at->format('Y');
         // $username = strtolower($request->firstName).strtolower($request->lastName).$uniqueId;
