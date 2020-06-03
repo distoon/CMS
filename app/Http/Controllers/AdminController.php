@@ -147,13 +147,14 @@ class AdminController extends Controller
     public function getUpdateCourse($code) 
     {
         $course = Course::where('code', $code)->first();
+        // return $course->name;
         return view('admin.course.update', compact('course'));
     }
 
     public function postUpdateCourse(Request $request, $code)   
     {
         $course = Course::where('code', $code)->first();
-        // return $course;
-        return $request;
+        // return $request;
+        
     }
 }

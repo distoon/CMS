@@ -12,17 +12,17 @@
                 <div class="box-body">
                   <div class="form-group">
                     <label>Course Name</label>
-                    <input type="text" class="form-control" value={{ $course->name }} name="courseName">
+                    <input type="text" class="form-control" value="{{ $course->name }}" name="courseName">
                   </div>
 
                   <div class="form-group">
                     <label>Course Code</label>
-                    <input type="text" class="form-control" value={{ $course->code }} name="courseCode">
+                    <input type="text" class="form-control" value="{{ $course->code }}" name="courseCode">
                   </div>
 
                   <div class="form-group">
                       <label>Minimum Number Of Students</label>
-                      <input type="number" class="form-control" value={{ $course->min_students_number }} name="minStudentsNumber">
+                      <input type="number" class="form-control" value="{{ $course->min_students_number }}" name="minStudentsNumber">
                   </div>
 
                   <div class="form-group">

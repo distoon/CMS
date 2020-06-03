@@ -208,11 +208,11 @@ return [
     */
 
     'menu' => [
-        [
-            'text' => 'search',
-            'search' => false,
-            'topnav' => false,
-        ],
+        // [
+        //     'text' => 'search',
+        //     'search' => false,
+        //     'topnav' => false,
+        // ],
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
@@ -221,13 +221,8 @@ return [
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
-            'url'  => 'admin/settings',
+            'url'  => 'profile',
             'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
         ],
         // [
         //     'text'    => 'multilevel',
@@ -267,19 +262,7 @@ return [
         //         ],
         //     ],
         // ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'aqua',
-        ],
+
     ],
 
     /*

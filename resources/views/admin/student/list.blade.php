@@ -2,7 +2,7 @@
 @section('content')
     <form action="{{ route('list.student') }}" id="form">
         <div class="col-md-3 form-group">
-            <label>Show Students Of Level:</label>
+            <h2>!!Show Students Of Level:</h2>
             <select name="level" class="form-control" id="level" name="level">
                 <option disabled selected>Choose Level</option>
                 <option {{ ($level==1)? "selected" : " " }} value="1">First Level</option>

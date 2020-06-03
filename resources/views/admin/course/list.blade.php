@@ -25,7 +25,7 @@
             </div>
             <div class="col-4">
                <div class="form-group">
-                    <button type="submit" style="margin-top: 6%" class="btn btn-primary">Submit</button>
+                    <button type="submit" style="margin-top: 6%" class="btn btn-primary">Show</button>
                </div>
             </div>
         </div>

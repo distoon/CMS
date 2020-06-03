@@ -32,7 +32,8 @@ class AppServiceProvider extends ServiceProvider
         if(\Auth::check()){
           if(\Auth::user()->role == 0){
             $event->menu->add(['header' => 'Admin']);
-            $event->menu->add([
+            $event->menu->add(
+                [
                     'text'    => 'Courses',
                     'icon'    => 'fas fa-fw fa-share',
                     'submenu' => [
@@ -52,12 +53,12 @@ class AppServiceProvider extends ServiceProvider
                     'icon'    => 'fas fa-fw fa-share',
                     'submenu' => [
                         [
-                            'text' => 'level_one',
+                            'text' => 'Add New Hall',
                             'url'  => '#',
                         ],
                         
                         [
-                            'text' => 'level_one',
+                            'text' => 'All Halls',
                             'url'  => '#',
                         ],
                     
@@ -68,12 +69,12 @@ class AppServiceProvider extends ServiceProvider
                     'icon'    => 'fas fa-fw fa-share',
                     'submenu' => [
                         [
-                            'text' => 'level_one',
+                            'text' => 'Add New Instructor',
                             'url'  => '#',
                         ],
                         
                         [
-                            'text' => 'level_one',
+                            'text' => 'All Instructors',
                             'url'  => '#',
                         ],
                     
@@ -96,8 +97,30 @@ class AppServiceProvider extends ServiceProvider
                 ]
              );
           }
-          else {
+          if(\Auth::user()->role == 1) {
             $event->menu->add(['header' => 'Courses']);
+            $event->menu->add(
+                [
+                'text'    => 'Register Your Courses',
+                'icon'    => 'fas fa-fw fa-share',
+                'url' => '#',
+                ],
+                [
+                'text'    => 'View Registerd Courses',
+                'icon'    => 'fas fa-fw fa-share',
+                'url' => '#',
+                ]
+            );
+          }
+          if(\Auth::user()->role == 2) {
+            $event->menu->add(['header' => 'Courses']);
+            $event->menu->add(
+                [
+                'text'    => 'View Your Courses',
+                'icon'    => 'fas fa-fw fa-share',
+                'url' => '#',
+                ]
+            );
           }
         }
       });
