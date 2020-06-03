@@ -40,6 +40,7 @@ class AdminController extends Controller
             'level' => $request->level,
             'gpa' => $request->gpa,
             'department_id' => $request->department_id,
+            ''
         ]);
         // $uniqueId = $student->created_at->format('Y');
         // $username = strtolower($request->firstName).strtolower($request->lastName).$uniqueId;
@@ -87,6 +88,7 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    // ****************************************************
     public function getListStudents(Request $request)
     {
         $level = $request->level;
@@ -129,22 +131,16 @@ class AdminController extends Controller
     }
     public function getListCourses(Request $request)
     {
-        // $courses = (new Course)->newQuery();
-        // // $courses = Course::all();
-        // // $courses = $courses->newQuery();
-        // // $course->all();
-        // if($request->has('department'))
-        // {
-        //     $courses->where('department_id', $request->department);
-        // }
-        // if($request->has('semester'))
-        // {
-        //     $courses->where('semester', $request->semester);
-        // }
-        // $courses->get();
-        // return $courses;
-        // return view('admin.course.list', compact('courses'));
-        $courses = Course::all();
+        $courses = (new Course)->newQuery();
+        if($request->has('department'))
+        {
+            $courses->where('department_id', $request->department);
+        }
+        if($request->has('semester'))
+        {
+            $courses->where('semester', $request->semester);
+        }
+        $courses = $courses->get();
         return view('admin.course.list', compact('courses'));
     }
 

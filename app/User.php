@@ -57,4 +57,8 @@ class User extends Authenticatable
     {
         return asset('images/default.jpg');
     }
+    public function getFullNameAttribute()
+    {
+        return ucfirst($this->first_name)." ".ucfirst($this->last_name);
+    }
 }
