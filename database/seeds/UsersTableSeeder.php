@@ -13,14 +13,37 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         User::truncate();
-        User::create([
-            'first_name' => 'Admin',
-            'last_name' => 'Admin',
-            'user_name' => 'admin',
-            'email' => 'admin@admin.com',
-            'password' => \Hash::make('admin123'),
-            'gender' => '1',
-            'role' => '0',
-        ]);
+        User::insert(
+            [
+                'first_name' => 'Admin',
+                'last_name' => 'Admin',
+                'user_name' => 'admin',
+                'email' => 'admin@admin.com',
+                'password' => \Hash::make('admin123'),
+                'gender' => '1',
+                'role' => '0',
+                'create_at' => Carbon\Carbon::now(),
+            ],
+            [
+                'first_name' => 'Student',
+                'last_name' => 'Student',
+                'user_name' => 'student',
+                'email' => 'student@demo.com',
+                'password' => \Hash::make('admin123'),
+                'gender' => '1',
+                'role' => '1',
+                'create_at' => Carbon\Carbon::now(),
+            ],
+            [
+                'first_name' => 'Admin',
+                'last_name' => 'Admin',
+                'user_name' => 'admin',
+                'email' => 'instructor@demo.com',
+                'password' => \Hash::make('admin123'),
+                'gender' => '1',
+                'role' => '2',
+                'create_at' => Carbon\Carbon::now(),
+            ]
+        );
     }
 }
