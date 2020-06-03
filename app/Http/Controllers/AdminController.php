@@ -99,7 +99,7 @@ class AdminController extends Controller
         $student = Student::whereHas('user', function($query) use($name){
             $query->where('user_name',$name);
         })->first();
-        return view('admin.student.view', compact($student));
+        return view('admin.student.view', compact('student'));
     }
 
     public function getAddCourse(Request $request)
@@ -129,20 +129,35 @@ class AdminController extends Controller
     }
     public function getListCourses(Request $request)
     {
-        $courses = (new Course)->newQuery();
-        // $courses = Course::all();
-        // $courses = $courses->newQuery();
-        // $course->all();
-        if($request->has('department'))
-        {
-            $courses->where('department_id', $request->department);
-        }
-        if($request->has('semester'))
-        {
-            $courses->where('semester', $request->semester);
-        }
-        $courses->get();
-        return $courses;
+        // $courses = (new Course)->newQuery();
+        // // $courses = Course::all();
+        // // $courses = $courses->newQuery();
+        // // $course->all();
+        // if($request->has('department'))
+        // {
+        //     $courses->where('department_id', $request->department);
+        // }
+        // if($request->has('semester'))
+        // {
+        //     $courses->where('semester', $request->semester);
+        // }
+        // $courses->get();
+        // return $courses;
+        // return view('admin.course.list', compact('courses'));
+        $courses = Course::all();
         return view('admin.course.list', compact('courses'));
+    }
+
+    public function getUpdateCourse($code) 
+    {
+        $course = Course::where('code', $code)->first();
+        return view('admin.course.update', compact('course'));
+    }
+
+    public function postUpdateCourse(Request $request, $code)   
+    {
+        $course = Course::where('code', $code)->first();
+        // return $course;
+        return $request;
     }
 }
