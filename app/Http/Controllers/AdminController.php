@@ -88,6 +88,7 @@ class AdminController extends Controller
         return redirect()->back();
     }
 
+    // ****************************************************
     public function getListStudents(Request $request)
     {
         $level = $request->level;
@@ -131,9 +132,6 @@ class AdminController extends Controller
     public function getListCourses(Request $request)
     {
         $courses = (new Course)->newQuery();
-        // $courses = Course::all();
-        // $courses = $courses->newQuery();
-        // $course->all();
         if($request->has('department'))
         {
             $courses->where('department_id', $request->department);
@@ -142,8 +140,7 @@ class AdminController extends Controller
         {
             $courses->where('semester', $request->semester);
         }
-        $courses->get();
-        return $courses;
+        $courses = $courses->get();
         return view('admin.course.list', compact('courses'));
     }
 }
