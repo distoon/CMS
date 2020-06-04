@@ -51,6 +51,7 @@ Route::group(['middleware' => ['auth'],],function(){
             Route::get('/hall/{id}','AdminController@showHall')->name('update.hall');
             Route::get('/edit-hall/{id}','AdminController@editHall')->name('edit.hall');
             Route::post('/update-hall/{id}','AdminController@updateHall')->name('update.hall');
+            
             // instructors
             Route::get('/instructors','AdminController@Listinstructors')->name('list.instructor');
             Route::get('/add-instructor','AdminController@createinstructor')->name('add.instructor');

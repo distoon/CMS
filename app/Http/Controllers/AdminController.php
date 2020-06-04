@@ -153,8 +153,21 @@ class AdminController extends Controller
 
     public function postUpdateCourse(Request $request, $code)   
     {
+        $this->validate($request, [
+            'courseName' => 'max:255',
+            'courseCode' => 'max:255',
+            'minStudentsNumber' => 'numeric',
+            'creditHours' => 'numeric',
+         ]);
         $course = Course::where('code', $code)->first();
-        // return $request;
-        
+        $course->update([
+            'name' => $request->courseName,
+            'code' => $request->courseCode,
+            'min_students_number' => $request->minStudentsNumber,
+            'department_id' => $request->department_id,
+            'semester' => $request->semester,
+            'credit_hours' => $request->creditHours,
+        ]);
+        return redirect()->back();
     }
 }

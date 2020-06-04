@@ -45,7 +45,6 @@
                     <label>Credit Hours</label>
                     <input type="number" class="form-control" value={{ $course->credit_hours }} name="creditHours">
                   </div>
-
                 </div>
               </form>
               <!-- /.box-body -->
