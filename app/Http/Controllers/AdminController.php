@@ -19,31 +19,31 @@ class AdminController extends Controller
 
     public function postAddStudent(Request $request)
     {
-        $this->validate($request, [
-            'email' => 'email|max:255|required',
+        $this->validate($request,[
+            // 'email' => 'email|max:255|required',
             'firstName' => 'max:255|alpha|required',
             'lastName'=> 'max:255|alpha|required',
-            'level' =>' integer|lt:4|required',
-            'gpa' => 'numeric|lt:4| gt:0',
-            'userName' => 'max:255|alpha|required',
-            'password' => 'required',
+            // 'level' =>' integer|lt:4|required',
+            // 'gpa' => 'numeric|lt:4| gt:0',
+            // 'userName' => 'max:255|alpha|required',
+            // 'password' => 'required',
             'gender' => 'required',
             'department_id' => 'required',
         ]);
         $user = User::create([
-            'email' => $request->email,
+            'email' => $request->firstName."_".$request->lastName."@cms.com",
             'first_name' => $request->firstName,
             'last_name' => $request->lastName,
             'user_name' => $request->userName,
-            'password' => \Hash::make($request->password),
+            'password' => \Hash::make("P@ssw0rd"),
             'gender' => $request->gender,
         ]);
         $student = Student::create([
             'user_id' => $user->id,
-            'level' => $request->level,
-            'gpa' => $request->gpa,
+            'level' => "1",
+            'gpa' => "0",
             'department_id' => $request->department_id,
-            ''
+            'unique_id' => '0',
         ]);
         // $uniqueId = $student->created_at->format('Y');
         // $username = strtolower($request->firstName).strtolower($request->lastName).$uniqueId;

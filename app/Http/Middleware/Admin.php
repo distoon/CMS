@@ -15,11 +15,16 @@ class Admin
      */
     public function handle($request, Closure $next)
     {
-        if(\Auth::user()->isAdmin()){
+        if(\Auth::check()){
+            if(\Auth::user()->isAdmin()){
             return $next($request);
+            }
+            else{
+                return abort('404');
+            }
         }
         else{
-            return abort('404');
+            return redirect(route('login'));
         }
     }
 }
