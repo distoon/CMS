@@ -43,11 +43,19 @@ class User extends Authenticatable
     }
     public function instructors()
     {
-        return $this->hasMany('App/Instructor');
+        return $this->hasMany('App\Instructor');
     }
     public function isAdmin()
     {
         return ($this->role == 0)? true : false;
+    }
+    public function isStudent()
+    {
+        return ($this->role == 1)? true : false;
+    }
+    public function isInstructor()
+    {
+        return ($this->role == 2)? true : false;
     }
     public function getNameAttribute()
     {

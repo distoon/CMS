@@ -7,8 +7,11 @@ use App\User;
 use App\Student;
 use App\Department;
 use App\Course;
+use App\Instructor;
 class AdminController extends Controller
 {
+
+    //STUDENT
     public function getAddStudent(Request $request)
     {
         return view('admin.student.create');
@@ -52,8 +55,10 @@ class AdminController extends Controller
         $student = Student::whereHas('user', function($query) use($name){
             $query->where('user_name',$name);
         })->first();
-
-        return view('admin.student.update',compact('student'));
+        if($student)
+            return view('admin.student.update',compact('student'));
+        else
+            abort('404');
     }
 
     public function postUpdateStudent(Request $request, $name)
@@ -85,10 +90,9 @@ class AdminController extends Controller
 
         ]);
         
-        return redirect()->back();
+        return redirect(route('edit.student', $student->user->user_name));
     }
 
-    // ****************************************************
     public function getListStudents(Request $request)
     {
         $level = $request->level;
@@ -103,6 +107,8 @@ class AdminController extends Controller
         })->first();
         return view('admin.student.view', compact('student'));
     }
+    ////////////////
+    //COURSE
 
     public function getAddCourse(Request $request)
     {
@@ -118,16 +124,23 @@ class AdminController extends Controller
            'semester' => 'required',
            'creditHours' => 'numeric|required',
         ]);
-
-        $course = Course::create([
-            'name' => $request->courseName,
-            'code' => $request->courseCode,
-            'min_students_number' => $request->minStudentsNumber,
-            'department_id' => $request->department_id,
-            'semester' => $request->semester,
-            'credit_hours' => $request->creditHours,
-        ]);
-        return redirect()->back();
+        if($course)
+        {
+            $course = Course::create([
+                'name' => $request->courseName,
+                'code' => $request->courseCode,
+                'min_students_number' => $request->minStudentsNumber,
+                'department_id' => $request->department_id,
+                'semester' => $request->semester,
+                'credit_hours' => $request->creditHours,
+            ]);
+            return redirect()->back();
+        }
+        else
+        {
+            abort('404');
+        }
+        
     }
     public function getListCourses(Request $request)
     {
@@ -147,14 +160,125 @@ class AdminController extends Controller
     public function getUpdateCourse($code) 
     {
         $course = Course::where('code', $code)->first();
+        if($course)
+            return view('admin.course.update', compact('course'));
+        else
+            abort('404');
         // return $course->name;
-        return view('admin.course.update', compact('course'));
     }
 
     public function postUpdateCourse(Request $request, $code)   
     {
         $course = Course::where('code', $code)->first();
-        // return $request;
-        
+        if($course->code)
+        {
+            $course->update([
+                'name' => $request->courseName,
+                'code' => $request->courseCode,
+                'min_students_number' => $request->minStudentsNumber,
+                'department_id' => $request->department_id,
+                'semester' => $request->semester,
+                'credit_hours' => $request->creditHours,
+                
+            ]);
+            return redirect(route('edit.course',$course->code));
+        }
+        else
+            abort('404');
     }
+    ///////////////////
+    //Instructors
+
+    public function createInstructor(Request $request)
+    {
+        return view('admin.instructor.create');
+    }
+
+    public function storeInstructor(Request $request)
+    {
+        $this->validate($request, [
+            'email' => 'email|max:255|required',
+            'firstName' => 'max:255|alpha|required',
+            'lastName'=> 'max:255|alpha|required',
+            'userName' => 'max:255|alpha|required',
+            'password' => 'required',
+            'gender' => 'required',
+            'department_id' => 'required',
+        ]);
+        $user = User::create([
+            'email' => $request->email,
+            'first_name' => $request->firstName,
+            'last_name' => $request->lastName,
+            'user_name' => $request->userName,
+            'password' => \Hash::make($request->password),
+            'gender' => $request->gender,
+            'role' => '2',
+
+        ]);
+        $instructor = Instructor::create([
+            'user_id' => $user->id,
+            'department_id' => $request->department_id,
+        ]);
+        return redirect()->back();
+    }
+
+    public function editInstructor($name){
+        
+        $instructor = Instructor::whereHas('user', function($query) use($name){
+            $query->where('user_name',$name);
+        })->first();
+        if($instructor)
+            return view('admin.instructor.update',compact('instructor'));
+        else
+            abort('404');
+    }
+
+    public function updateInstructor(Request $request, $name)
+    {
+        // return $request;
+        $instructor = Instructor::whereHas('user', function($query) use($name){
+            $query->where('user_name',$name);
+        })->first();
+        $this->validate($request, [
+            'email' => 'email|max:255',
+            'firstName' => 'max:255|alpha',
+            'lastName'=> 'max:255|alpha',
+            'gender' => 'numeric',
+            'department_id' => 'numeric',
+        ]);
+
+        $instructor->user->update([
+            'email' => $request->email,
+            'first_name' => $request->firstName,
+            'last_name' => $request->lastName,
+            'gender' => $request->gender,
+        ]);
+        $instructor->update([
+            'level' => $request->level,
+            'department_id' => $request->department_id,
+        ]);
+        
+        return redirect(route('edit.instructor', $instructor->user->user_name));
+    }
+
+    public function listInstructors(Request $request)
+    {
+        $department_id = $request->department_id;
+        $instructors = new Instructor;
+        if($request->has('department_id'))
+        {
+            $instructors = $instructors->where('department_id',$department_id);
+        }
+        $instructors = $instructors->get();
+        return view('admin.instructor.list',compact('instructors','department_id'));
+    }
+
+    public function showInstructor($name)
+    {
+        $instructor = Instructor::whereHas('user', function($query) use($name){
+            $query->where('user_name',$name);
+        })->first();
+        return view('admin.instructor.view', compact('instructor'));
+    }
+
 }
