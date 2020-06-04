@@ -8,6 +8,7 @@ use App\Student;
 use App\Department;
 use App\Course;
 use App\Instructor;
+use App\Hall;
 class AdminController extends Controller
 {
 
@@ -254,10 +255,8 @@ class AdminController extends Controller
             'gender' => $request->gender,
         ]);
         $instructor->update([
-            'level' => $request->level,
             'department_id' => $request->department_id,
         ]);
-        
         return redirect(route('edit.instructor', $instructor->user->user_name));
     }
 
@@ -281,4 +280,55 @@ class AdminController extends Controller
         return view('admin.instructor.view', compact('instructor'));
     }
 
+    /////////////////
+    //HALLS
+    public function createHall(Request $request)
+    {
+        return view('admin.hall.create');
+    }
+
+    public function storeHall(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'max:255|alpha|required',
+        ]);
+        $hall = Hall::create([
+            'name' => $request->name,
+        ]);
+        return redirect()->back();
+    }
+
+    public function editHall($name){
+        
+        $hall = Hall::where('name', $name)->first();
+        if($hall)
+            return view('admin.hall.update',compact('hall'));
+        else
+            abort('404');
+    }
+
+    public function updateHall(Request $request, $name)
+    {
+        // return $request;
+        $this->validate($request, [
+            'name' => 'max:255|alpha',
+        ]);
+        $hall = Hall::where('name', $name)->first();
+        $hall->update([
+            'name' => $request->name,
+        ]);
+        return redirect(route('edit.hall', $hall->name));
+    }
+
+    public function listHalls(Request $request)
+    {
+        $halls = Hall::all();
+        return view('admin.hall.list',compact('halls'));
+    }
+
+    public function showHall($name)
+    {   
+        $hall = Hall::where('name', $name)->first();
+        return view('admin.hall.view', compact('hall'));
+    }
 }
