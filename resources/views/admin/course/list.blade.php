@@ -5,7 +5,7 @@
             <div class="col-4">
                 <div class="form-group">
                     <label>Show Courses Of Department:</label>
-                    <select name="department" class="form-control" id="department" name="department">
+                    <select name="department" class="form-control" id="department">
                         <option disabled selected>Choose Department</option>
                         <option value="1">Computer Science</option>
                         <option value="2">Information Systems</option>
@@ -16,7 +16,7 @@
             <div class="col-4">
                 <div class="form-group">
                     <label>Show Courses Of Semester:</label>
-                    <select name="semester" class="form-control" id="semester" name="semester">
+                    <select name="semester" class="form-control" id="semester">
                         <option disabled selected>Choose Semester</option>
                         <option value="1">First Semester</option>
                         <option value="2">Second Semester</option>

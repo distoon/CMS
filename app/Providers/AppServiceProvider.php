@@ -70,12 +70,12 @@ class AppServiceProvider extends ServiceProvider
                     'submenu' => [
                         [
                             'text' => 'Add New Instructor',
-                            'url'  => '#',
+                            'url'  => route('add.instructor'),
                         ],
                         
                         [
                             'text' => 'All Instructors',
-                            'url'  => '#',
+                            'url'  => route('list.instructor'),
                         ],
                     
                     ],

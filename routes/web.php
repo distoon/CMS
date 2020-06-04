@@ -45,18 +45,18 @@ Route::group(['middleware' => ['auth'],],function(){
             Route::get('/course/{code}', 'AdminController@postUpdateCourse')->name('view.course');
 
             // halls
-            Route::get('/halls','AdminController@ListHalls')->name('list.hall');
+            Route::get('/halls','AdminController@listHalls')->name('list.hall');
             Route::get('/add-hall','AdminController@createHall')->name('add.hall');
             Route::post('/add-hall','AdminController@storeHall')->name('add.hall');
             Route::get('/hall/{id}','AdminController@showHall')->name('update.hall');
             Route::get('/edit-hall/{id}','AdminController@editHall')->name('edit.hall');
             Route::post('/update-hall/{id}','AdminController@updateHall')->name('update.hall');
-            
+
             // instructors
-            Route::get('/instructors','AdminController@Listinstructors')->name('list.instructor');
-            Route::get('/add-instructor','AdminController@createinstructor')->name('add.instructor');
-            Route::post('/add-instructor','AdminController@storeinstructor')->name('add.instructor');
-            Route::get('/instructor/{id}','AdminController@showinstructor')->name('update.instructor');
-            Route::get('/edit-instructor/{id}','AdminController@editinstructor')->name('edit.instructor');
-            Route::post('/update-instructor/{id}','AdminController@updateinstructor')->name('update.instructor');
+            Route::get('/instructors','AdminController@listInstructors')->name('list.instructor');
+            Route::get('/add-instructor','AdminController@createInstructor')->name('add.instructor');
+            Route::post('/add-instructor','AdminController@storeInstructor')->name('add.instructor');
+            Route::get('/instructor/{id}','AdminController@showInstructor')->name('update.instructor');
+            Route::get('/edit-instructor/{id}','AdminController@editInstructor')->name('edit.instructor');
+            Route::post('/update-instructor/{id}','AdminController@updateInstructor')->name('update.instructor');
         });
