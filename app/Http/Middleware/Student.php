@@ -15,11 +15,21 @@ class Student
      */
     public function handle($request, Closure $next)
     {
-        if(\Auth::user()->isStudent()){
-            return $next($request);
+        if(\Auth::check()){
+            if(\Auth::user()->isStudent()){
+                if(\Auth::user()->email_verified_at){
+                    return $next($request);
+                }
+                else{
+                    return redirect(route('profile'));
+                }
+            }
+            else{
+                return $next($request);
+            }
         }
         else{
-            return abort('404');
+            redirect(route('login'));
         }
     }
 }

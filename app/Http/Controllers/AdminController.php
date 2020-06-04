@@ -42,7 +42,7 @@ class AdminController extends Controller
             'user_id' => $user->id,
             'level' => "1",
             'gpa' => "0",
-            'department_id' => $request->department_id,
+            'department_id' => '1',
             'unique_id' => '0',
         ]);
         // $uniqueId = $student->created_at->format('Y');

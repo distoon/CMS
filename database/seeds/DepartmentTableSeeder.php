@@ -12,7 +12,13 @@ class DepartmentTableSeeder extends Seeder
      */
     public function run()
     {
+        Department::truncate();
         Department::insert([
+            [
+                'name' => 'General',
+                'short_name' => 'general',
+                'created_at' => Carbon\Carbon::now(),
+            ],
             [
                 'name' => 'Computer Science',
                 'short_name' => 'CS',

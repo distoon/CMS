@@ -24,23 +24,11 @@ Route::group(['middleware' => ['auth'],],function(){
 
     Route::get('/home',function(){
         return view('home');
-    });
+    })->name('home')->middleware('student');
 
-    Route::get('/profile', function() {
-        switch(\Auth::user()->role){
-            case '0':
-                return view('admin.profile');
-                break;
-            case '1':
-                return view('student.profile');
-                break;
-            case '2':
-                return view('instructor.profile');
-                break;
-            default: return redirect(route('login'));
-        }
-    })->name('profile');
+    Route::get('/profile','StudentController@profile')->name('profile');
         
+    // ADMIN FUNCTIONS
     Route::group(['prefix' => 'admin','middleware' => ['admin'],],function()
     {
         // students
@@ -74,6 +62,12 @@ Route::group(['middleware' => ['auth'],],function(){
         Route::get('/instructor/{id}','AdminController@showInstructor')->name('update.instructor');
         Route::get('/edit-instructor/{id}','AdminController@editInstructor')->name('edit.instructor');
         Route::post('/update-instructor/{id}','AdminController@updateInstructor')->name('update.instructor');
-    });        
+    });   
+    
+    // STUDENT FUNCTIONS
+    Route::post('first-login','StudentController@firstLogin')->name('first-login');
+    Route::group(['middleware' => ['student'],],function(){
+        Route::post('update-profile','StudentController@updateProfile')->name('update.profile');
+    });
 });
         
