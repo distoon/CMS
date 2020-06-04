@@ -21,25 +21,41 @@ Auth::routes([
 ]);
 Route::group(['middleware' => ['auth'],],function(){
         
-    Route::get('/home', function() {
-        return view('home');
-    })->name('home');
-    
-    Route::group(['prefix' => 'admin','middleware' => ['admin'],],function()
-    {
-        // students
-        Route::get('/add-student','AdminController@getAddStudent')->name('add.student');
-        Route::post('/add-student','AdminController@postAddStudent')->name('add.student');
-        Route::get('/edit-student/{name}', 'AdminController@getUpdateStudent')->name('edit.student');
-        Route::post('/update-student/{name}', 'AdminController@postUpdateStudent')->name('update.student');
-        Route::get('/list-students','AdminController@getListStudents')->name('list.student');
-        Route::get('/view-student/{name}', 'AdminController@getViewStudent')->name('view.student');
-
-        // Courses
-        Route::get('/add-course','AdminController@getAddCourse')->name('add.course');
-        Route::post('/add-course','AdminController@postAddCourse')->name('add.course');
-        Route::get('/list-courses', 'AdminController@getListCourses')->name('list.course');
-        Route::get('/edit-course/{code}', 'AdminController@getUpdateCourse')->name('edit.course');
-        Route::post('/update-course/{code}', 'AdminController@postUpdateCourse')->name('update.course');
-    });
 });
+        Route::get('/home', function() {
+            return view('home');
+        })->name('home');
+        
+        Route::group(['prefix' => 'admin','middleware' => ['admin'],],function()
+        {
+            // students
+            Route::get('/add-student','AdminController@getAddStudent')->name('add.student');
+            Route::post('/add-student','AdminController@postAddStudent')->name('add.student');
+            Route::get('/edit-student/{name}', 'AdminController@getUpdateStudent')->name('edit.student');
+            Route::post('/update-student/{name}', 'AdminController@postUpdateStudent')->name('update.student');
+            Route::get('/students','AdminController@getListStudents')->name('list.student');
+            Route::get('/student/{name}', 'AdminController@getViewStudent')->name('view.student');
+    
+            // Courses
+            Route::get('/add-course','AdminController@getAddCourse')->name('add.course');
+            Route::post('/add-course','AdminController@postAddCourse')->name('add.course');
+            Route::get('/courses', 'AdminController@getListCourses')->name('list.course');
+            Route::get('/edit-course/{code}', 'AdminController@getUpdateCourse')->name('edit.course');
+            Route::post('/update-course/{code}', 'AdminController@postUpdateCourse')->name('update.course');
+            Route::get('/course/{code}', 'AdminController@postUpdateCourse')->name('view.course');
+
+            // halls
+            Route::get('/halls','AdminController@ListHalls')->name('list.hall');
+            Route::get('/add-hall','AdminController@createHall')->name('add.hall');
+            Route::post('/add-hall','AdminController@storeHall')->name('add.hall');
+            Route::get('/hall/{id}','AdminController@showHall')->name('update.hall');
+            Route::get('/edit-hall/{id}','AdminController@editHall')->name('edit.hall');
+            Route::post('/update-hall/{id}','AdminController@updateHall')->name('update.hall');
+            // instructors
+            Route::get('/instructors','AdminController@Listinstructors')->name('list.instructor');
+            Route::get('/add-instructor','AdminController@createinstructor')->name('add.instructor');
+            Route::post('/add-instructor','AdminController@storeinstructor')->name('add.instructor');
+            Route::get('/instructor/{id}','AdminController@showinstructor')->name('update.instructor');
+            Route::get('/edit-instructor/{id}','AdminController@editinstructor')->name('edit.instructor');
+            Route::post('/update-instructor/{id}','AdminController@updateinstructor')->name('update.instructor');
+        });
