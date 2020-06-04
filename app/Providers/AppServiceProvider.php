@@ -54,12 +54,12 @@ class AppServiceProvider extends ServiceProvider
                     'submenu' => [
                         [
                             'text' => 'Add New Hall',
-                            'url'  => '#',
+                            'url'  => route('add.hall'),
                         ],
                         
                         [
                             'text' => 'All Halls',
-                            'url'  => '#',
+                            'url'  => route('list.hall'),
                         ],
                     
                     ],
