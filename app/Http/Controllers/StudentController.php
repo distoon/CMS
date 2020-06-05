@@ -123,6 +123,7 @@ class StudentController extends Controller
             $studentCourse = StudentCourse::create([
                 'student_id' => $student->id,
                 'course_id' => $course_id,
+                'semester' => '1',
             ]);
             return response()->json([
                 "state" => true,
