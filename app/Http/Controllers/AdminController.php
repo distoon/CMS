@@ -29,7 +29,7 @@ class AdminController extends Controller
             // 'userName' => 'max:255|alpha|required',
             // 'password' => 'required',
             'gender' => 'required',
-            'department_id' => 'required',
+            // 'department_id' => 'required',
         ]);
         $user = User::create([
             'email' => $request->firstName."_".$request->lastName."@cms.com",
