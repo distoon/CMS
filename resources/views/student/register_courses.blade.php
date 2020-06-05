@@ -25,9 +25,9 @@
                     <td>{{ ($course->semester == 1)? "First" : "Second" }}</td>
                     <td>
                         @if ($student_courses->contains('course_id',$course->id))
-                            <button type="button" url={{ route('post.unregister.course',['course_id' => $course->id,'student_id' => Auth::user()->id]) }} class="unregister btn-danger btn-sm btn fa">Unregister</button>
+                            <button type="button" url={{ route('post.unregister.course',['course_id' => $course->id,'student_id' => Auth::user()->id]) }} user_id = "{{ Auth::user()->id }}" course_id = "{{ $course->id }}" class="unregister btn-danger btn-sm btn fa">Unregister</button>
                         @else
-                            <button type="button" url={{ route('post.register.course',['course_id' => $course->id,'student_id' => Auth::user()->id]) }} class="register btn-primary btn-sm btn fa">Register</button>
+                            <button type="button" url={{ route('post.register.course',['course_id' => $course->id,'student_id' => Auth::user()->id]) }} user_id = "{{ Auth::user()->id }}" course_id = "{{ $course->id }}" class="register btn-primary btn-sm btn fa">Register</button>
                         @endif
                     </td>
                 </tr>
@@ -35,10 +35,14 @@
         </tbody>
     </table>
 @endsection
+
 @section('js')
     <script>
         $(document).ready(function(){
             $(".register").on('click',function(){
+                var user_id = $(this).attr('user_id');
+                var course_id = $(this).attr('course_id');
+                var newUrl = "{{ url('unregister-course') }}/"+course_id+"/"+user_id;
                 var url = $(this).attr("url");
                 $.ajax({
                     data : {
@@ -50,12 +54,16 @@
                         if(data.state){
                             $(this).attr('class',"unregister btn-danger btn-sm btn fa");
                             $(this).html('Unregister');
+                            $(this).attr('url',newUrl);
                         }       
                     }
                 });
             });
             
             $(".unregister").on('click',function(){
+                var user_id = $(this).attr('user_id');
+                var course_id = $(this).attr('course_id');
+                var newUrl = "{{ url('register-course') }}/"+course_id+"/"+user_id;
                 var url = $(this).attr("url");
                 $.ajax({
                     data : {
@@ -67,6 +75,7 @@
                         if(data.state){
                             $(this).attr('class',"register btn-primary btn-sm btn fa");
                             $(this).html('register');
+                            $(this).attr('url',newUrl);
                         }
                     }
                 });
