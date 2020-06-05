@@ -25,7 +25,7 @@
                     <td>{{ ($course->semester == 1)? "First" : "Second" }}</td>
                     <td>
                         @if ($student_courses->contains('course_id',$course->id))
-                            <button type="button" url={{ route('post.register.course',['course_id' => $course->id,'student_id' => Auth::user()->id]) }} class="register btn-danger btn-sm btn fa">Unregister</button>
+                            <button type="button" url={{ route('post.unregister.course',['course_id' => $course->id,'student_id' => Auth::user()->id]) }} class="unregister btn-danger btn-sm btn fa">Unregister</button>
                         @else
                             <button type="button" url={{ route('post.register.course',['course_id' => $course->id,'student_id' => Auth::user()->id]) }} class="register btn-primary btn-sm btn fa">Register</button>
                         @endif
@@ -48,9 +48,26 @@
                     url : url,
                     success: data =>{
                         if(data.state){
-                            $(this).attr('class',"register btn-danger btn-sm btn fa");
-                            $(this).html('Unregister')
+                            $(this).attr('class',"unregister btn-danger btn-sm btn fa");
+                            $(this).html('Unregister');
                         }       
+                    }
+                });
+            });
+            
+            $(".unregister").on('click',function(){
+                var url = $(this).attr("url");
+                $.ajax({
+                    data : {
+                        "_token" : "{{ csrf_token() }}",
+                    }, 
+                    type : "POST",
+                    url : url,
+                    success: data =>{
+                        if(data.state){
+                            $(this).attr('class',"register btn-primary btn-sm btn fa");
+                            $(this).html('register');
+                        }
                     }
                 });
             });

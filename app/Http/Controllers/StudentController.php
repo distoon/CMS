@@ -115,7 +115,8 @@ class StudentController extends Controller
         }
         $student_courses = $student->studentCourses;
         if(count($student_courses) < 7){
-            if($student_courses->contains('course_id',$course_id)){
+            if($student_courses->contains('course_id',$course_id))
+            {
                 return response()->json([
                     "state" => false,
                     "message" => "course already registered",
@@ -138,14 +139,39 @@ class StudentController extends Controller
             ]);
         }
     }
+
+    public function postUnregisterCourses($course_id, $user_id) 
+    {
+        $student = Student::where('user_id',$user_id)->first();
+        if(!$student)
+        {
+            \Auth::logout();
+            return redirect(route('login'));
+        }
+        $studentCourses = $student->studentCourses;
+        if($studentCourses->contains('course_id', $course_id))
+        {
+            StudentCourse::where('course_id', $course_id)->delete();
+            return response()->json([
+                "state" => true,
+                "message" => "Course has been deleted successfully",
+            ]);
+        }
+        else
+        {
+            return response()->json([
+                "state" => false,
+                "message" => "Course has not been found successfully",
+            ]);
+        }
+    }
     public function getShowRegesteredCourses(Request $request)
     {
         $user = \Auth::user();
         //$courses = StudentCourse::where('student_id', $user->id)->toSql();
         $student = Student::where('user_id', $user->id)->first();
-        $courses = $student->courses->toSql();
-        return $courses;
-        return view('studnet.show_courses',compact('courses'));
+        $courses = $student->courses;
+        return view('student.show_courses',compact('courses'));
     }
 }
         
