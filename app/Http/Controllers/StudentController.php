@@ -58,7 +58,7 @@ class StudentController extends Controller
     public function updateProfile(Request $request)
     {
         $rules = [
-            'email' => 'email|unique:users,email',
+            'email' => 'email',
             // 'confirm_password' => 'regex:/^(?=\S*[a-z])(?=\S*[!@#$&*])(?=\S*[A-Z])(?=\S*[\d])\S*$/',
             'new_password' => 'same:confirm_password',
             'firstName' => 'alpha',

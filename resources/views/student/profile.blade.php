@@ -21,7 +21,7 @@
                     <input type="text" class="form-control" placeholder="Last Name" name="lastName" value="{{ $student->user->last_name }}">
                 </div> 
                 <div class="form-group">
-                    <label>Old Password</label>
+                    <label>New Password</label>
                     <input type="password" class="form-control" placeholder="Enter Password" name="new_password">
                 </div> 
                 <div class="form-group">
