@@ -36,7 +36,7 @@
                   <label for="female">Female</label>
                   <input type="radio" name="gender" value="0" id="female">
                 </div>
-                <div class="form-group">
+                {{-- <div class="form-group">
                   <label >Department</label>
                   <select class ="form-control" name="department_id">
                     <option selected disabled>Select Department</option>
@@ -45,7 +45,7 @@
                     <option value="2">Information Systems</option>
                     <option value="3">Information Technology</option>
                   </select>
-                </div>
+                </div> --}}
                 {{-- <div class="form-group">
                   <label>Level</label>
                   <input type="number" class="form-control" placeholder="Enter Level" name="level">

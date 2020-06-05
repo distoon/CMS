@@ -35,7 +35,7 @@ class AdminController extends Controller
             'email' => $request->firstName."_".$request->lastName."@cms.com",
             'first_name' => $request->firstName,
             'last_name' => $request->lastName,
-            'user_name' => $request->userName,
+            'user_name' => '0',
             'password' => \Hash::make("P@ssw0rd"),
             'gender' => $request->gender,
         ]);
