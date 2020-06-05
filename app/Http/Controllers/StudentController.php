@@ -139,7 +139,12 @@ class StudentController extends Controller
     }
     public function getShowRegesteredCourses(Request $request)
     {
-        $courses = Course::where(student)
+        $user = \Auth::user();
+        //$courses = StudentCourse::where('student_id', $user->id)->toSql();
+        $student = Student::where('user_id', $user->id)->first();
+        $courses = $student->courses->toSql();
+        return $courses;
+        return view('studnet.show_courses',compact('courses'));
     }
 }
         
