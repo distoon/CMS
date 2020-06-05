@@ -133,5 +133,9 @@ class StudentController extends Controller
             ]);
         }
     }
+    public function getShowRegesteredCourses(Request $request)
+    {
+        $courses = Course::where(student)
+    }
 }
         
