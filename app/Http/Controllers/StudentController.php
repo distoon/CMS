@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Student;
 use Carbon\Carbon;
 use App\Course;
+use App\StudentCourse;
 
 class StudentController extends Controller
 {
@@ -20,6 +21,10 @@ class StudentController extends Controller
                 })->first();
                 if($student){
                     return view('student.profile',compact('student'));
+                }
+                else{
+                    \Auth::logout();
+                    return redirect()->route('login');
                 }
                 break;
             case '2':
@@ -82,10 +87,51 @@ class StudentController extends Controller
             abort('500');
         }
     }
-    public function registerCourses()
+    public function getRegisterCourses()
     {
         $courses = Course::all();
-        return view('student.register_courses',compact('courses'));
+        $student = Student::whereHas('user', function($query){
+            $query->where('id',\Auth::user()->id);
+        })->first();
+        if(!$student){
+            \Auth::logout();
+            return redirect(route('login'));
+        }
+        $student_courses = $student->studentCourses;
+        return view('student.register_courses',compact('courses','student_courses'));
+    }
+    public function postRegisterCourses($course_id,$user_id)
+    {
+        $student = Student::whereHas('user', function($query) use($user_id){
+            $query->where('id',$user_id);
+        })->first();
+        if(!$student){
+            \Auth::logout();
+            return redirect(route('login'));
+        }
+        $student_courses = $student->studentCourses;
+        if(count($student_courses) < 7){
+            if($student_courses->contains('course_id',$course_id)){
+                return response()->json([
+                    "state" => false,
+                    "message" => "course already registered",
+                ]);
+            }
+            $studentCourse = StudentCourse::create([
+                'student_id' => $student->id,
+                'course_id' => $course_id,
+            ]);
+            return response()->json([
+                "state" => true,
+                "message" => "course registered succesfuly",
+            ]);
+        }
+        else{
+            return response()->json([
+                "state" => false,
+                "message" => "student has seven courses",
+            ]);
+        }
     }
 }
         
