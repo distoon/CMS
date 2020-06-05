@@ -20,14 +20,14 @@
                     <label>Last name</label>
                     <input type="text" class="form-control" placeholder="Last Name" name="lastName" value="{{ $student->user->last_name }}">
                 </div> 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label>New Password</label>
                     <input type="password" class="form-control" placeholder="Enter Password" name="new_password">
                 </div> 
                 <div class="form-group">
                     <label>Confirm Password</label>
                     <input type="password" class="form-control" placeholder="Enter Password" name="confirm_password">
-                </div> 
+                </div>  --}}
                 {{-- <div class="form-group">
                     <label for="male">Male</label>
                     <input type="radio" name="gender" value="1" id="male">
@@ -66,6 +66,14 @@
                 <label>New Email: {{ ($student->user->email_verified_at)? $student->user->email : " " }}</label>
                 <input type="email" class="form-control" placeholder="Your Email" name="email"  {{ ($student->user->email_verified_at)? " " : "required" }}>
             </div>
+            <div class="form-group">
+                    <label>New Password</label>
+                    <input type="password" class="form-control" placeholder="Enter Password" name="new_password">
+                </div> 
+            <div class="form-group">
+                <label>Confirm Password</label>
+                <input type="password" class="form-control" placeholder="Enter Password" name="confirm_password">
+            </div> 
         <input type="hidden" value="{{ $student->user->id }}" name="user_id">    
         <div class="form-group">
             <button type="submit" class="btn btn-sm btn-primary">Submit</button>

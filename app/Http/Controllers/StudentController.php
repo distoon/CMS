@@ -38,6 +38,8 @@ class StudentController extends Controller
         $this->validate($request,[
             'student_id' => 'required|numeric|digits:8|unique:students,unique_id',
             'email' => 'required|email',
+            'new_password' => 'required|min:8',
+            'confirm_password' => 'same:new_password',
         ]);
         $student = Student::whereHas('user', function($query) use($request){
             $query->where('id',$request->user_id);
@@ -47,6 +49,7 @@ class StudentController extends Controller
                 'user_name' => $student->user->first_name."-".$student->user->last_name."-".$request->student_id,
                 'email' => $request->email,
                 'email_verified_at' => Carbon::now(),
+                'password' => \Hash::make($request->new_password),
             ]);
             $student->update([
                 'unique_id' => $request->student_id,
@@ -120,6 +123,7 @@ class StudentController extends Controller
             $studentCourse = StudentCourse::create([
                 'student_id' => $student->id,
                 'course_id' => $course_id,
+                'semester' => '1',
             ]);
             return response()->json([
                 "state" => true,
