@@ -33,8 +33,8 @@ class AdminController extends Controller
         ]);
         $user = User::create([
             'email' => $request->firstName."_".$request->lastName."@cms.com",
-            'first_name' => $request->firstName,
-            'last_name' => $request->lastName,
+            'first_name' => ucfirst($request->firstName),
+            'last_name' => ucfirst($request->lastName),
             'user_name' => '0',
             'password' => \Hash::make("P@ssw0rd"),
             'gender' => $request->gender,
