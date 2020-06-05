@@ -29,9 +29,9 @@
                     <label >Department</label>
                     <select class ="form-control" name="department_id">
                       <option selected disabled>Select Department</option>
-                      <option {{ ($course->department_id == 1)? "selected" : " " }} value="1">Computer Science</option>
-                      <option {{ ($course->department_id == 2)? "selected" : " " }} value="2">Information Systems</option>
-                      <option {{ ($course->department_id == 3)? "selected" : " " }} value="3">Information Technology</option>
+                      @foreach ($departments as $department)
+                        <option {{ ($course->department_id == $department->id)? "selected" : " " }} value="{{ $department->id }}">{{ $department->name }}</option>
+                      @endforeach
                     </select>
                   </div>
 

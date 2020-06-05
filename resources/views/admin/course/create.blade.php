@@ -28,11 +28,11 @@
                 <div class="form-group">
                   <label >Department</label>
                   <select class ="form-control" name="department_id">
-                    <option selected disabled>Select Department</option>
-                    <option value="1">Computer Science</option>
-                    <option value="2">Information Systems</option>
-                    <option value="3">Information Technology</option>
-                  </select>
+                      <option selected disabled>Select Department</option>
+                      @foreach ($departments as $department)
+                        <option  value="{{ $department->id }}">{{ $department->name }}</option>
+                      @endforeach
+                    </select>
                 </div>
 
                 <div class="form-group">

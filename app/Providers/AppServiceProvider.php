@@ -103,7 +103,7 @@ class AppServiceProvider extends ServiceProvider
                 [
                 'text'    => 'Register Your Courses',
                 'icon'    => 'fas fa-fw fa-share',
-                'url' => '#',
+                'url' => route('regitser.courses'),
                 ],
                 [
                 'text'    => 'View Registerd Courses',

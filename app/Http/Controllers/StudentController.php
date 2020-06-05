@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Student;
 use Carbon\Carbon;
+use App\Course;
 
 class StudentController extends Controller
 {
@@ -83,7 +84,8 @@ class StudentController extends Controller
     }
     public function registerCourses()
     {
-        # code...
+        $courses = Course::all();
+        return view('student.register_courses',compact('courses'));
     }
 }
         

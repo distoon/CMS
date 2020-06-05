@@ -113,22 +113,21 @@ class AdminController extends Controller
 
     public function getAddCourse(Request $request)
     {
-        return view('admin.course.create');
+        $departments = Department::all();
+        return view('admin.course.create',compact('departments'));
     }
     public function postAddCourse(Request $request)
     {
         $this->validate($request, [
            'courseName' => 'max:255|required',
-           'courseCode' => 'required|max:255',
+           'courseCode' => 'required|max:255|unique:courses,code',
            'minStudentsNumber' => 'required|numeric',
            'department_id' => 'required',
            'semester' => 'required',
            'creditHours' => 'numeric|required',
         ]);
-        if($course)
-        {
             $course = Course::create([
-                'name' => $request->courseName,
+                'name' => ucfirst($request->courseName),
                 'code' => $request->courseCode,
                 'min_students_number' => $request->minStudentsNumber,
                 'department_id' => $request->department_id,
@@ -136,11 +135,6 @@ class AdminController extends Controller
                 'credit_hours' => $request->creditHours,
             ]);
             return redirect()->back();
-        }
-        else
-        {
-            abort('404');
-        }
         
     }
     public function getListCourses(Request $request)
@@ -161,8 +155,9 @@ class AdminController extends Controller
     public function getUpdateCourse($code) 
     {
         $course = Course::where('code', $code)->first();
+        $departments = Department::all();
         if($course)
-            return view('admin.course.update', compact('course'));
+            return view('admin.course.update', compact('course','departments'));
         else
             abort('404');
         // return $course->name;
@@ -170,6 +165,7 @@ class AdminController extends Controller
 
     public function postUpdateCourse(Request $request, $code)   
     {
+        // return $request->department_id;
         $course = Course::where('code', $code)->first();
         if($course->code)
         {
@@ -290,7 +286,7 @@ class AdminController extends Controller
     public function storeHall(Request $request)
     {
         $this->validate($request, [
-            'name' => 'max:255|alpha|required',
+            'name' => 'max:50|required',
         ]);
         $hall = Hall::create([
             'name' => $request->name,

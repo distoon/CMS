@@ -68,6 +68,7 @@ Route::group(['middleware' => ['auth'],],function(){
     Route::post('first-login','StudentController@firstLogin')->name('first-login');
     Route::group(['middleware' => ['student'],],function(){
         Route::post('update-profile','StudentController@updateProfile')->name('update.profile');
+        Route::get('regitser-courses','StudentController@registerCourses')->name('regitser.courses');
     });
 });
         
