@@ -80,7 +80,7 @@ class StudentController extends Controller
         if($student){
             $student->user->update([
                 'email' => $request->email,
-                'password' => \Hash::make($request->password),
+                'password' => \Hash::make($request->new_password),
                 'first_name' => $request->firstName,
                 'last_name' => $request->lastName,
             ]);
@@ -100,6 +100,7 @@ class StudentController extends Controller
             \Auth::logout();
             return redirect(route('login'));
         }
+        // return $student->courses;
         $student_courses = $student->studentCourses;
         return view('student.register_courses',compact('courses','student_courses'));
     }

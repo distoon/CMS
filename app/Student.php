@@ -6,10 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Student extends Model
 {
-    protected $fillable = [
-        'user_id','unique_id','level','department_id','gpa',
-    ];
-
+    // protected $fillable = [
+    //     'user_id','unique_id','level','department_id','gpa',
+    // ];
+    protected $guarded = [];
     public function user()
     {
         return $this->belongsTo('App\User');
@@ -20,7 +20,7 @@ class Student extends Model
     }
     public function courses()
     {
-        return $this->hasManyThrough('App\Course','App\StudentCourse');
+        return $this->hasManyThrough('App\Course','App\StudentCourse','student_id','id');
     }
     public function department()
     {
