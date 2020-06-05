@@ -127,10 +127,11 @@ class StudentController extends Controller
                 'course_id' => $course_id,
                 'semester' => '1',
             ]);
-            return response()->json([
-                "state" => true,
-                "message" => "course registered succesfuly",
-            ]);
+            return redirect()->back();
+            // return response()->json([
+            //     "state" => true,
+            //     "message" => "course registered succesfuly",
+            // ]);
         }
         else{
             return response()->json([
@@ -152,10 +153,11 @@ class StudentController extends Controller
         if($studentCourses->contains('course_id', $course_id))
         {
             StudentCourse::where('course_id', $course_id)->delete();
-            return response()->json([
-                "state" => true,
-                "message" => "Course has been deleted successfully",
-            ]);
+            return redirect()->back();
+            // return response()->json([
+            //     "state" => true,
+            //     "message" => "Course has been deleted successfully",
+            // ]);
         }
         else
         {
