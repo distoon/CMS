@@ -173,6 +173,7 @@ class StudentController extends Controller
         //$courses = StudentCourse::where('student_id', $user->id)->toSql();
         $student = Student::where('user_id', $user->id)->first();
         $courses = $student->courses;
+        return $courses;
         return view('student.show_courses',compact('courses'));
     }
 }
