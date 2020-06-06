@@ -20,7 +20,7 @@ class Student extends Model
     }
     public function courses()
     {
-        return $this->hasManyThrough('App\Course','App\StudentCourse','student_id','id');
+        return $this->belongsToMany('App\Course','App\StudentCourse');
     }
     public function department()
     {

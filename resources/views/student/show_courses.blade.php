@@ -12,7 +12,7 @@
             <tr>
                 <td>{{ $course->name }}</td>
                 <td>{{ $course->code }}</td>
-                <td>{{ $course->semster }}</td>
+                <td>{{ ($course->semester == 1)? "First" : "Second" }}</td>
             </tr>
          @endforeach
     </tbody>

@@ -8,6 +8,7 @@ class StudentCourse extends Model
 {
    
     protected $guarded = [];
+    protected $table = 'student_courses';
     public function student()
     {
         return $this->belongsTo('App\Student');
