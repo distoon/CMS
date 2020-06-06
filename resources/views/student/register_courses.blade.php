@@ -25,9 +25,15 @@
                     <td>{{ ($course->semester == 1)? "First" : "Second" }}</td>
                     <td>
                         @if ($student_courses->contains('course_id',$course->id))
-                            <button type="button" url={{ route('post.unregister.course',['course_id' => $course->id,'student_id' => Auth::user()->id]) }} user_id = "{{ Auth::user()->id }}" course_id = "{{ $course->id }}" class="unregister btn-danger btn-sm btn fa">Unregister</button>
+                        <form action="{{ route('post.unregister.course',['course_id' => $course->id,'student_id' => Auth::user()->id]) }}" method="POST">
+                            @csrf
+                            <button type="submit" user_id = "{{ Auth::user()->id }}" course_id = "{{ $course->id }}" id="{{ $index }}" class="unregister btn-danger btn-sm btn fa">Unregister</button>
+                        </form>
                         @else
-                            <button type="button" url={{ route('post.register.course',['course_id' => $course->id,'student_id' => Auth::user()->id]) }} user_id = "{{ Auth::user()->id }}" course_id = "{{ $course->id }}" class="register btn-primary btn-sm btn fa">Register</button>
+                        <form action="{{ route('post.register.course',['course_id' => $course->id,'student_id' => Auth::user()->id]) }}" method="POST">
+                            @csrf
+                            <button type="submit" url= user_id = "{{ Auth::user()->id }}" course_id = "{{ $course->id }}" id="{{ $index }}" class="register btn-primary btn-sm btn fa">Register</button>
+                        </form>
                         @endif
                     </td>
                 </tr>
@@ -36,14 +42,16 @@
     </table>
 @endsection
 
-@section('js')
+{{-- @section('js')
     <script>
-        $(document).ready(function(){
-            $(".register").on('click',function(){
-                var user_id = $(this).attr('user_id');
-                var course_id = $(this).attr('course_id');
+        
+                
+        $(".register").on('click',function(){
+                var id = $(this).attr('id');
+                var user_id = $("#"+id).attr('user_id');
+                var course_id = $("#"+id).attr('course_id');
                 var newUrl = "{{ url('unregister-course') }}/"+course_id+"/"+user_id;
-                var url = $(this).attr("url");
+                var url = $("#"+id).attr("url");
                 $.ajax({
                     data : {
                         "_token" : "{{ csrf_token() }}",
@@ -52,19 +60,20 @@
                     url : url,
                     success: data =>{
                         if(data.state){
-                            $(this).attr('class',"unregister btn-danger btn-sm btn fa");
-                            $(this).html('Unregister');
-                            $(this).attr('url',newUrl);
-                        }   
+                            $("#"+id).attr('class',"unregister btn-danger btn-sm btn fa");
+                            $("#"+id).html('Unregister');
+                            $("#"+id).attr('url',newUrl);
+                        }       
                     }
                 });
             });
             
             $(".unregister").on('click',function(){
-                var user_id = $(this).attr('user_id');
-                var course_id = $(this).attr('course_id');
+                var id = $(this).attr('id');
+                var user_id = $("#"+id).attr('user_id');
+                var course_id = $("#"+id).attr('course_id');
                 var newUrl = "{{ url('register-course') }}/"+course_id+"/"+user_id;
-                var url = $(this).attr("url");
+                var url = $("#"+id).attr("url");
                 $.ajax({
                     data : {
                         "_token" : "{{ csrf_token() }}",
@@ -73,13 +82,15 @@
                     url : url,
                     success: data =>{
                         if(data.state){
-                            $(this).attr('class',"register btn-primary btn-sm btn fa");
-                            $(this).html('register');
-                            $(this).attr('url',newUrl);
+                            $("#"+id).attr('class',"register btn-primary btn-sm btn fa");
+                            $("#"+id).html('Register');
+                            $("#"+id).attr('url',newUrl);
                         }
                     }
                 });
             });
+        $(document).ready(function(){
+            
         });
     </script>
-@endsection
+@endsection --}}
