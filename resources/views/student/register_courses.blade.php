@@ -55,7 +55,7 @@
                             $(this).attr('class',"unregister btn-danger btn-sm btn fa");
                             $(this).html('Unregister');
                             $(this).attr('url',newUrl);
-                        }       
+                        }   
                     }
                 });
             });
