@@ -78,6 +78,9 @@ Route::group(['middleware' => ['auth'],],function(){
     });
 
     // INSTRUCTOR FUNCTIONS
-    
+    Route::get('/courses/{user_name}', 'InstructorController@getListCourses')->name('list.course.instructor');
+    Route::post('/register-course/{course_id}','InstructorController@postRegisterCourses')->name('register.course.instructor');
+    Route::post('/unregister-course/{course_id}','InstructorController@postUnregisterCourses')->name('unregister.course.instructor');
+
 });
         
