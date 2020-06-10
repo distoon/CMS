@@ -73,6 +73,8 @@ Route::group(['middleware' => ['auth'],],function(){
         Route::post('unregister-course/{course_id}/{student_id}','StudentController@postUnregisterCourses')->name('post.unregister.course');
         Route::get('show-regestered-courses', 'StudentController@getShowRegesteredCourses')->name('get.show.course');
     });
+
+    // INSTRUCTOR FUNCTIONS
     
 });
         
