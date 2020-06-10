@@ -37,7 +37,7 @@
                     <td>{{ $instructor->user->user_name}}</td>
                     <td>{{ $instructor->department->name }}</td>
                     <td>
-                        <a href="#" class='btn btn-primary btn-sm'><i class="fas fa-eye"></i><span> View</span></a>
+                        <a href="{{ route('assign.instructor', $instructor->user->user_name) }}" class='btn btn-primary btn-sm'><i class="fas fa-eye"></i><span> Assign</span></a>
                         <a href="{{ route('edit.instructor', $instructor->user->user_name) }}" class='btn btn-warning btn-sm fa'><i class="fas fa-pen"></i> Edit</a>
                         <a href="#" class='btn btn-danger btn-sm' onclick="return confirm('ARE YOU SURE?')"><i class="fas fa-trash-alt"></i> Delete</a>
                     </td>
