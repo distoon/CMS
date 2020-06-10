@@ -62,6 +62,9 @@ Route::group(['middleware' => ['auth'],],function(){
         Route::get('/instructor/{id}','AdminController@showInstructor')->name('update.instructor');
         Route::get('/edit-instructor/{id}','AdminController@editInstructor')->name('edit.instructor');
         Route::post('/update-instructor/{id}','AdminController@updateInstructor')->name('update.instructor');
+        Route::get('/assign-course/{user_name}', 'AdminController@getAssignInstructor')->name('assign.instructor');
+        Route::post('/assign-course/{course_id}/{user_name}','AdminController@postAssignCourses')->name('assign.course');
+        Route::post('/unassign-course/{course_id}/{user_name}','AdminController@postUnassignCourses')->name('unassign.course');
     });   
     
     // STUDENT FUNCTIONS

@@ -9,7 +9,7 @@ class Instructor extends Model
     protected $fillable = [
         'user_id','department_id',
     ];
-    public function instructorCourse()
+    public function instructorCourses()
     {
         return $this->hasMany('App\InstructorCourse');
     }

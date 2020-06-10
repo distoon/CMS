@@ -2,7 +2,10 @@
 
 use Illuminate\Database\Seeder;
 use App\User;
-
+use App\Student;
+use App\Instructor;
+use App\StudentCourse;
+use App\InstructorCourse;
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -12,6 +15,10 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
+        Student::truncate();
+        Instructor::truncate();
+        StudentCourse::truncate();
+        InstructorCourse::truncate();
         User::truncate();
         User::insert([
                 [
