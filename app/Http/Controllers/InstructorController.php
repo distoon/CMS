@@ -3,13 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Student;
-use App\Department;
 use App\Course;
 use App\Instructor;
-use App\Hall;
-use App\InstructorCourse;
 class InstructorController extends Controller
 {
     public function getListCourses($user_name)
@@ -89,9 +84,5 @@ class InstructorController extends Controller
         return $request;
     }
 
-    public function registerCourses($course_id,$instructor_id)
-    {
-        
-    }
 
 }
