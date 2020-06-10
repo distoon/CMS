@@ -312,10 +312,6 @@ class AdminController extends Controller
             return redirect()->back()->with([
                 "message" => "Instructor assigned successfully",
             ]);
-            // return response()->json([
-            //     "state" => true,
-            //     "message" => "course registered succesfuly",
-            // ]);
         }
         else{
             return redirect()->back()->with([
