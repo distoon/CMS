@@ -118,7 +118,7 @@ class AppServiceProvider extends ServiceProvider
                 [
                 'text'    => 'View Your Courses',
                 'icon'    => 'fas fa-fw fa-share',
-                'url' => '#',
+                'url' => route('list.course.instructor'),
                 ]
             );
           }
