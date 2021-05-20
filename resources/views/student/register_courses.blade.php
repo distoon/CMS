@@ -6,6 +6,9 @@
     <h1 class="m-0 text-dark">Register Courses for this semester</h1>
 @endsection
 @section('content')
+@if(Session::has('message'))
+    <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+@endif
     <table class="table dataTable text-center">
         <thead>
             <th>#</th>

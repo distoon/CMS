@@ -34,63 +34,51 @@ class AppServiceProvider extends ServiceProvider
             $event->menu->add(['header' => 'Admin']);
             $event->menu->add(
                 [
-                    'text'    => 'Courses',
+                    'text'    => 'Products',
                     'icon'    => 'fas fa-fw fa-share',
                     'submenu' => [
                         [
-                            'text' => 'Add New Course',
-                            'url'  =>  route('add.course'),
+                            'text' => 'Manage Glasses',
+                            'url'  =>  '#',
                         ],
                         
                         [
-                            'text' => 'All Courses',
-                            'url'  => route('list.course'),
+                            'text' => 'Manage Lenses',
+                            'url'  => '#',
                         ],
                     ],
                 ],
                 [
-                    'text'    => 'Halls',
+                    'text'    => 'Clients & Employees',
                     'icon'    => 'fas fa-fw fa-share',
                     'submenu' => [
                         [
-                            'text' => 'Add New Hall',
+                            'text' => 'Manage Clients',
                             'url'  => route('add.hall'),
                         ],
                         
                         [
-                            'text' => 'All Halls',
+                            'text' => 'Manage Employees',
                             'url'  => route('list.hall'),
                         ],
                     
                     ],
                 ],
                 [
-                    'text'    => 'Instructors',
+                    'text'    => 'Transactions',
                     'icon'    => 'fas fa-fw fa-share',
                     'submenu' => [
                         [
-                            'text' => 'Add New Instructor',
-                            'url'  => route('add.instructor'),
-                        ],
-                        
-                        [
-                            'text' => 'All Instructors',
-                            'url'  => route('list.instructor'),
-                        ],
-                    
-                    ],
-                ],
-                [
-                    'text'    => 'Students',
-                    'icon'    => 'fas fa-fw fa-share',
-                    'submenu' => [
-                        [
-                            'text' => 'Add New Student',
-                            'url'  => route('add.student'),
+                            'text' => 'Manage Sales Invoices',
+                            'url'  => '#',
                         ],
                         [
-                            'text' => 'All Students',
-                            'url' => route('list.student'),
+                            'text' => 'Manage Purchases Invoices',
+                            'url' => '#',
+                        ],
+                        [
+                            'text' => 'Internal Transactions',
+                            'url' => '#',
                         ],
                     
                     ],

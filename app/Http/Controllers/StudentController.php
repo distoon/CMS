@@ -117,7 +117,7 @@ class StudentController extends Controller
         if(count($student_courses) < 7){
             if($student_courses->contains('course_id',$course_id))
             {
-                return response()->json([
+                return redirect()->back()->with([
                     "state" => false,
                     "message" => "course already registered",
                 ]);
@@ -134,7 +134,7 @@ class StudentController extends Controller
             // ]);
         }
         else{
-            return response()->json([
+            return redirect()->back()->with([
                 "state" => false,
                 "message" => "student has seven courses",
             ]);
@@ -161,7 +161,7 @@ class StudentController extends Controller
         }
         else
         {
-            return response()->json([
+            return redirect()->back()->with([
                 "state" => false,
                 "message" => "Course has not been found successfully",
             ]);
